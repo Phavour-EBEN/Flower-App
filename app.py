@@ -4,6 +4,24 @@ import tensorflow_hub as hub
 import cv2
 import streamlit as st
 
+# Load the model with proper initialization
+try:
+    # Define the MobileNet model URL
+    mobilenet_url = "https://tfhub.dev/google/tf2-preview/mobilenet_v2/classification/4"
+    
+    # Create the model architecture first
+    model = tf.keras.Sequential([
+        hub.KerasLayer(mobilenet_url, input_shape=(224, 224, 3))
+    ])
+    
+    # Load the weights
+    MODEL_PATH = "mobilenet_flower_model.h5"
+    model.load_weights(MODEL_PATH)
+    st.success("Model loaded successfully!")
+except Exception as e:
+    st.error(f"Error loading model: {str(e)}")
+
+
 # Load the trained model
 MODEL_PATH = "mobilenet_flower_model.h5"  # Change this to your actual model path
 model = tf.keras.models.load_model(MODEL_PATH, custom_objects={'KerasLayer': hub.KerasLayer})
