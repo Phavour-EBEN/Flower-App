@@ -21,6 +21,7 @@ try:
 except Exception as e:
     st.error(f"Error loading model: {str(e)}")
 
+
 # Load the trained model
 MODEL_PATH = "mobilenet_flower_model.h5"  # Change this to your actual model path
 model = tf.keras.models.load_model(MODEL_PATH, custom_objects={'KerasLayer': hub.KerasLayer})
