@@ -3,3 +3,4 @@ tensorflow
 tensorflow-hub
 numpy
 opencv-python
+opencv-python-headless
